@@ -1,28 +1,25 @@
 import "./App.css";
-
+// import Category from "./Category-movies";
+import movies from "./movie.json";
 function App() {
-  const axios = require("axios");
-
-  axios
-    .get(
-      "https://res.cloudinary.com/lereacteur-apollo/raw/upload/v1643648266/react-new-exercices/netflix2022/movies_rnexgr.json"
-    )
-    .then((response) => {
-      let movies = response.data;
-      return (
-        <div>
-          {" "}
-          {movies.map((movie, index) => {
-            console.log(movie.category);
-
-            return <div key={index}> {movie.category} </div>;
-          })}{" "}
-        </div>
-      );
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  return (
+    <div className="flex-box">
+      {movies.map((movie, index) => {
+        return (
+          <div key={index}>
+            <h2>{movie.category}</h2>
+            <div className="container-img">
+              {" "}
+              {movie.images.map((image, index) => {
+                console.log(image);
+                return <img key={index} src={image} alt="" />;
+              })}
+            </div>
+          </div>
+        );
+      })}{" "}
+    </div>
+  );
 }
 
 export default App;
