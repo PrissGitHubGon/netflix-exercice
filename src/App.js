@@ -12,10 +12,10 @@ function App() {
       return (
         <div>
           {" "}
-          {movies.map((movie) => {
+          {movies.map((movie, index) => {
             console.log(movie.category);
 
-            return <div> {movie.category} </div>;
+            return <div key={index}> {movie.category} </div>;
           })}{" "}
         </div>
       );
