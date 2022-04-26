@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const axios = require("axios");
+
+  axios
+    .get(
+      "https://res.cloudinary.com/lereacteur-apollo/raw/upload/v1643648266/react-new-exercices/netflix2022/movies_rnexgr.json"
+    )
+    .then((response) => {
+      let movies = response.data;
+      return (
+        <div>
+          {" "}
+          {movies.map((movie) => {
+            console.log(movie.category);
+
+            return <div> {movie.category} </div>;
+          })}{" "}
+        </div>
+      );
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
 export default App;
